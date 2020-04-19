@@ -9,6 +9,15 @@ body {
   background-position: center;
   position: relative;
 }
+.opener {
+  background-image: url('../images/cc_diagram_transp.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  height: 100%;
+  min-height: 100vh;
+}
 /*--- Graph CSS  ---*/
 
 .graph{
