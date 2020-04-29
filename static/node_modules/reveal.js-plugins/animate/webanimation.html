@@ -1,0 +1,265 @@
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #BECAC5;
+  font-family: Helvetica, sans-serif;
+}
+
+.blob {
+  display: inline-block;
+  width: 23rem;
+  height: 20rem;
+}
+
+.anim {
+  border-radius: 50%;
+  border: 0.4rem solid #fafafb;
+  width: 4rem;
+  height: 4rem;
+  position: absolute;
+  left: 9.5rem;
+  top: 3rem;
+}
+.anim.head {
+  border-color: #299;
+}
+.anim.body {
+  border-color: #c92;
+  width: 6rem;
+  height: 6rem;
+  top: 8rem;
+  left: 8.5rem;
+}
+.anim.hand {
+  border-color: #922;
+  top: 8rem;
+  left: 15rem;
+}
+.anim.hand.left {
+  left: 4rem;
+}
+.anim.foot {
+  border-color: #c65;
+  top: 15rem;
+  left: 7rem;
+}
+.anim.foot.right {
+  left: 12rem;
+}
+
+.controls {
+  display: inline-block;
+  width: 23rem;
+  padding-top: 1rem;
+}
+.controls div {
+  border: 0 solid #333;
+  overflow: auto;
+  margin-bottom: 1rem;
+}
+.controls label {
+  display: block;
+  margin-left: .5rem;
+  font-size: .8rem;
+}
+.controls input[type="range"] {
+  width: 16rem;
+  display: inline-block;
+  margin: .5rem;
+  float: right;
+}
+.controls button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  background: transparent;
+  border: none;
+  color: #333;
+  line-height: 1;
+  margin: .5rem;
+  text-align: center;
+  padding: .2rem .5rem .2rem .3rem;
+  border-radius: .3rem;
+  -webkit-transition: background .15s linear, color .15s linear;
+  transition: background .15s linear, color .15s linear;
+  border: 1px solid #333;
+  float: left;
+}
+.controls button.active {
+  background: #333;
+  color: #fafafb;
+}
+
+</style>
+</head>
+<body>
+
+<div class="blob">
+  <div class="anim head"></div>
+  <div class="anim body"></div>
+  <div class="anim hand left"></div>
+  <div class="anim hand right"></div>
+  <div class="anim foot left"></div>
+  <div class="anim foot right"></div>
+</div>
+<div class="controls">
+  <!--div data-mapping="all">
+    <label>All</label>
+    <input type="range" min="0" max="100" />
+    <button class="pause">&#9616;&#9616;</button>
+    <button class="rate-2x">2x</button>
+  </div-->
+  <div data-mapping="head">
+    <label>Head</label>
+    <input type="range" min="0" max="100" />
+    <button class="pause">&#9616;&#9616;</button>
+    <button class="rate-2x">2x</button>
+  </div>
+  <div data-mapping="body">
+    <label>Body</label>
+    <input type="range" min="0" max="100"/>
+    <button class="pause">&#9616;&#9616;</button>
+    <button class="rate-2x">2x</button>
+  </div>
+  <div data-mapping="leftHand">
+    <label>Left Hand</label>
+    <input type="range" min="0" max="100"/>
+    <button class="pause">&#9616;&#9616;</button>
+    <button class="rate-2x">2x</button>
+  </div>
+  <div data-mapping="rightHand">
+    <label>Right Hand</label>
+    <input type="range" min="0" max="100"/>
+    <button class="pause">&#9616;&#9616;</button>
+    <button class="rate-2x">2x</button>
+  </div>
+  <div data-mapping="leftFoot">
+    <label>Left Foot</label>
+    <input type="range" min="0" max="100"/>
+    <button class="pause">&#9616;&#9616;</button>
+    <button class="rate-2x">2x</button>
+  </div>
+  <div data-mapping="rightFoot">
+    <label>Right Foot</label>
+    <input type="range" min="0" max="100"/>
+    <button class="pause">&#9616;&#9616;</button>
+    <button class="rate-2x">2x</button>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+var animations = {};
+animations.leftFoot = document.querySelector('.foot.left').animate([{ transform: 'scale(1)' }, { transform: 'scale(.6)' }], {
+  duration: 700,
+  iterations: Infinity,
+  direction: 'alternate',
+  delay: 0 //100 * i
+});
+animations.rightFoot = document.querySelector('.foot.right').animate([{ transform: 'scale(.6)' }, { transform: 'scale(1)' }], {
+  duration: 700,
+  iterations: Infinity,
+  direction: 'alternate',
+  delay: 0
+});
+animations.rightHand = document.querySelector('.hand.right').animate([{ transform: 'scale(1)' }, { transform: 'scale(.6)' }], {
+  duration: 700,
+  iterations: Infinity,
+  direction: 'alternate',
+  delay: 0 //100 * i
+});
+animations.leftHand = document.querySelector('.hand.left').animate([{ transform: 'scale(.6)' }, { transform: 'scale(1)' }], {
+  duration: 700,
+  iterations: Infinity,
+  direction: 'alternate',
+  delay: 0
+});
+animations.body = document.querySelector('.body').animate([{ transform: 'translateY(0)' }, { transform: 'translateY(1rem)' }], {
+  duration: 350,
+  iterations: Infinity,
+  direction: 'alternate',
+  delay: 15
+});
+animations.head = document.querySelector('.head').animate([{ transform: 'translateY(0)' }, { transform: 'translateY(1rem)' }], {
+  duration: 350,
+  iterations: Infinity,
+  direction: 'alternate',
+  delay: 105
+});
+
+var ranges = document.querySelectorAll('input[type="range"]');
+for (var i = 0, len = ranges.length; i < len; i++) {
+  var range = ranges[i];
+  range.disabled = true;
+  range.value = 0;
+  range.addEventListener('change', rangeHandler);
+}
+var pauses = document.querySelectorAll('.pause');
+for (var i = 0, len = pauses.length; i < len; i++) {
+  pauses[i].addEventListener('click', pauseHandler);
+}
+
+var rates = document.querySelectorAll('.rate-2x');
+for (var i = 0, len = rates.length; i < len; i++) {
+  rates[i].addEventListener('click', rateHandler);
+}
+
+var duration = 1400;
+
+function rangeHandler(e) {
+  console.log('Enter rangeHandler');
+  var target = e.currentTarget;
+  var percent = parseInt(target.value, 10) / 100;
+  var player = animations[target.parentNode.getAttribute('data-mapping')];
+
+  player.currentTime = percent * duration;
+}
+function rateHandler(e) {
+  console.log('Enter rateHandler');
+  var target = e.currentTarget;
+
+  var player = animations[target.parentNode.getAttribute('data-mapping')];
+
+  var wasActive = target.classList.contains('active');
+  target.classList[wasActive ? 'remove' : 'add']('active');
+  player.playbackRate = wasActive ? 1 : 2;
+}
+
+function pauseHandler(e) {
+  console.log('Enter pauseHandler');
+  var target = e.currentTarget;
+  var mapping = target.parentNode.getAttribute('data-mapping');
+  var player = animations[mapping];
+
+  if (player.playState === 'paused') {
+    player.play();
+    console.log(player.playbackRate);
+    target.classList.remove('active');
+    document.querySelector('[data-mapping="' + mapping + '"] input').disabled = true;
+  } else {
+    var currentRange = document.querySelector('[data-mapping="' + mapping + '"] input');
+    currentRange.disabled = false;
+    currentRange.value = player.currentTime % duration / duration * 100;
+
+    player.pause();
+    target.classList.add('active');
+  }
+}
+
+animations.leftHand.onfinish = function (e) {
+  console.log(e);
+};
+
+/* currentTime DOES take playbackRate into account... nice.
+setInterval(function() {
+  console.log(animations.head.currentTime,animations.body.currentTime);
+}, 1000);
+//*/
+</script>
+</body>

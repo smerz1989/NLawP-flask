@@ -1,0 +1,101 @@
+<html><head>
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG" type="text/javascript">
+    </script>
+</head>
+<body>
+<svg width="200" height="200">
+<circle cx="100" cy="100" r="100" fill="yellow"/>
+<text font-size="11" x="100" y="100">$ a^2 + b^2 = c^2 $</text>
+</svg>
+
+<script>
+
+    // apply a function to elements of an array x
+    function forEach(x,f) { 
+        var n = x.length; for (var i = 0; i < n; ++i) { f(x[i]); } 
+    }
+
+    // find all the SVG text elements that are delimited by 
+    // \( \) or $ $ MathJax delimiters 
+    // (with optional whitespace before/after)
+    function findSVGMathJax(f, context)
+    {
+        var re = /^\s*([LlRrCc]?)(\\\(.*\\\)|\$.*\$)\s*$/;
+        context = context || document;
+        forEach(context.getElementsByTagName('svg'), function(svg) {
+            forEach(svg.getElementsByTagName('text'), function(t) {
+                var m = t.textContent.match(re);
+                if (m)
+                {
+                    f(svg, t, m);
+                }
+            });
+        });
+    }
+
+    function svgmath() {
+	var options = {};
+        options.scale = 0.0016;
+        options.escape_clip = false;
+
+//alert( JSON.stringify(MathJax) );
+        var items = [];
+
+        // Move the raw MathJax items to a temporary element
+        MathJax.Hub.Register.StartupHook("Begin Typeset",function () { 
+            var mathbucket = document.createElement('div');
+            mathbucket.setAttribute('id','mathjax_svg_bucket');
+            document.body.appendChild(mathbucket);
+            findSVGMathJax(function(svg, t, m) { 
+                var d = document.createElement('div');
+                mathbucket.appendChild(d);
+                var mathmarkup = m[2].replace(/^\$(.*)\$$/,'\\($1\\)');
+                d.appendChild(document.createTextNode(mathmarkup));
+//                t.textContent = '';	
+alert(d.outerHTML);
+                items.push([t,d,m[1]]);
+            });
+        });
+        MathJax.Hub.Register.StartupHook("End Typeset",function() {
+            forEach(items, function(x) {
+                var svgdest = x[0]; 
+                var mathjaxdiv = x[1]; 
+alert(mathjaxdiv.outerHTML);
+                var justification = x[2];
+                var svgmath = 
+                     mathjaxdiv.getElementsByClassName('MathJax_SVG')[0]
+                               .getElementsByTagName('svg')[0];
+                var svgmathinfo = {
+                  width: svgmath.viewBox.baseVal.width, 
+                  height: svgmath.viewBox.baseVal.height
+                };
+                // get graphics nodes
+                var gnodes = 
+                    svgmath.getElementsByTagName('g')[0].cloneNode(true);
+                var fontsize = svgdest.getAttribute('font-size');
+                var scale = options.scale*fontsize;
+                var x =  +svgdest.getAttribute('x');
+                var y =  +svgdest.getAttribute('y');
+
+                var x0 = x;
+                var y0 = y;
+                var x1 = -svgmathinfo.width * 0.5;
+                var y1 = svgmathinfo.height*0;
+                gnodes.setAttribute('transform', 'translate('+x0+' '+y0+')'
+                     +' scale('+scale+') translate('+x1+' '+y1+')'
+                     +' matrix(1 0 0 -1 0 0)');
+                if (options.escape_clip)
+                    svgdest.parentNode.removeAttribute('clip-path');
+                svgdest.parentNode.replaceChild(gnodes,svgdest);
+            });
+            // remove the temporary items
+            var mathbucket = document.getElementById('mathjax_svg_bucket');
+//            mathbucket.parentNode.removeChild(mathbucket);
+        });
+    }
+    
+svgmath();
+
+</script>
+
+</body></html>

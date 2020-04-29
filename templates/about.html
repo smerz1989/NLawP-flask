@@ -1,6 +1,5 @@
 <html>
   <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static',filename='node_modules/reveal.js/css/reveal.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='node_modules/reveal.js/css/theme/white.css') }}">
     <link rel="icon" type="image/png" sizes="32x32"  href="{{ url_for('static',filename='images/favicon-32x32.png') }}">
@@ -8,43 +7,40 @@
   <body>
     <div class="reveal">
       <div class="slides">
-	<section>
 	    <section>
 	    Litigation expenses cost companies millions of dollars a year!
-	    <canvas id="myChart"></canvas>
+	    </section>
+	    <section>
+	      In 2008 the average Fortune 200 company spent $115 million dollars on litigation
+	    </section>
+	    <section>
+            </section>
+	    <section>
+		<center>
+		<div class="reveal" style="height=100vh;width=100wh;">
+	          <canvas id="myChart"></canvas>
+		</div>
+		</center>
+	    </section>
+	    <section>
 	    <small>2010 Conference on Civil Litigation<cite title="Litigation Cost Survey of Major Companies"></cite></small>
 	    </section>
 	    <section>
-	      Slide 2
+	      A crucial component of winning a case is bringing it before the right judge.
+	    </section>
+	    <section data-background-iframe="{{ url_for('static',filename='javascript/charts/criminal_court_win_chance.html') }}" data-background-interactive>
+		    Win rates for criminal court cases by US District Courts.
+		    <!--iframe src="{{ url_for('static',filename='javascript/charts/criminal_court_win_chance.html') }}" style="width=200wh;height:100vh;border:none;display:block" scrolling=no></iframe-->
             </section>
-	</section>
       </div>
     </div>
+    <!--script src="https://cdn.pydata.org/bokeh/release/bokeh-2.0.1.min.js"></script>
+    <script src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-2.0.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="{{ url_for('static',filename='javascript/charts/chart1.js') }}"></script-->
     <script src="{{ url_for('static',filename='node_modules/reveal.js/js/reveal.js') }}"></script>
     <script>
-      Reveal.initialize();
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var chart = new Chart(ctx, {
-	      type: 'line',
-	      data: {
-		labels: ['2000','2001','2002','2003','2004','2005','2006','2007','2008'],
-		datasets: [{
-		  label: 'My First dataset',
-		  borderColor: 'rgb(255, 99, 132)',
-		  data: [66.4,79.7,91.4,109.4,101.0,104.4,118.7,116.6,114.9]
-		}]
-	      },
-	      options: {
-		legend: {
-		  display: false,
-		},
-	        tooltips: {
-		  mode: 'index',
-		  axis: 'y'
-		}
-	      }
-      });
+       Reveal.initialize();
     </script>
   </body>
 </html>
