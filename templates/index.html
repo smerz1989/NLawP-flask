@@ -5,8 +5,6 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
   <link rel="stylesheet" href="{{ url_for('static',filename='styles/main.css')}}">
   <link rel="icon" type="image/png" sizes="32x32"  href="{{ url_for('static',filename='images/favicon-32x32.png') }}">
-  <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-2.0.1.min.css">
-  <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-2.0.1.min.css">
 {% endblock  %}
 
 {% block title %}Starting Page{% endblock %}
@@ -44,51 +42,28 @@
     <hr class="my-4">
     <p>Using a combination of natural language processing and machine learning we can achieve smarter court case predictions.</p>
     <p class="lead">
-      <a class="btn btn-primary btn-lg" href="#predictor" role="button">Learn more</a>
+      <a class="btn btn-primary btn-lg" href="/about" role="button">Learn more</a>
     </p>
   </div>
 	</div>
 </div>
-<!--header class="opener">
-  <h1 class="display-3">Legal Prediction</h1>
-  <p class="lead">Predicting court case law outcomes with smart machine learning.</p>
-  <hr class="my-4">
-  <p>Using a combination of natural language processing and machine learning we can achieve smarter court case predictions.</p>
-   <p class="lead">
-   <a class="btn btn-primary btn-lg" href="#predictor" role="button">Learn more</a>
-   </p>
-</header-->
 <div class="row justify-content-center">
   <div class="col-lg-8">
     <hr/>
   </div>
 </div>
 <div class="row justify-content-center">
-  <div class="col-lg-10">
+  <div class="col-lg-11">
     <div class="card border-primary mb-3">
       <a name="predictor"></a>
-      <h3 class="card-header" text-align="center">Prediction</h3>
-      <div class="card-body">
-        <h5 class="card-header">NLP Prediction of Data</h5>
-      </div>
+      <h3 class="card-header" text-align="center">NLP Predictions of Court Case Outcomes
+      <a class="btn btn-primary btn-small" href="/about#/0/6" role="button">See how it works!</a>
+      </h3>
       <div class="row">
-      <div class="col-md-2">
-      <form method="post">
-        <div class="form-group">
-	  {{ form.csrf_token() }}
-          <div class="form-group">
-	    {{ wtf.form_field(form.desired_outcome, class='form-control') }}
-            {{ wtf.form_field(form.case_type, class='form-control') }}
-          </div>
-	  <!--label class="col-form-label col-form-label-sm" for="example">Desired Outcome</label>
-	  < input type="text" class="form-control-sm" placeholder="Liberal/Conservative" id="example"></input -->
+        <div class="col-md-11">
+          {{ script|safe }}
+          {{ div|safe }}
         </div>
-      </form> 
-      </div>
-      <div class="col-md-8">
-        {{ script|safe }}
-        {{ div|safe }}
-      </div>
       </div>
     </div>
   </div>
@@ -98,6 +73,7 @@
 
 {% block scripts %}
   {{ super() }}
-   <script src="https://cdn.pydata.org/bokeh/release/bokeh-2.0.1.min.js"></script>
-   <script src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-2.0.1.min.js"></script>
+   <script src="https://cdn.bokeh.org/bokeh/release/bokeh-2.0.2.min.js" crossorigin="anonymous"></script>
+   <script src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.0.2.min.js" crossorigin="anonymous"></script>
+   <script src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.0.2.min.js" crossorigin="anonymous"></script>
 {% endblock %}

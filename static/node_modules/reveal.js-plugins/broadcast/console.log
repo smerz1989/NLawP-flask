@@ -1,0 +1,187 @@
+socket.io connection is closed
+RTCMultiConnection.min.js:15:8259
+socket.io is connected at:  https://rtcmulticonnection.herokuapp.com/
+RTCMultiConnection.min.js:15:1040
+socket.io connection is opened.
+RTCMultiConnection.min.js:15:7998
+check-broadcast-presence vpntest true
+Scalable-Broadcast.html:254:9
+join-broadcaster 
+Object { typeOfStreams: {…}, userid: "vpntest", broadcastId: "vpntest" }
+Scalable-Broadcast.html:99:9
+server-logs You <ose8q92ryy9813f9krj> are getting data/stream from <vpntest>
+RTCMultiConnection.min.js:15:9634
+vpntest online
+RTCMultiConnection.min.js:18:21290
+Remote peer's sdp: v=0
+
+o=mozilla...THIS_IS_SDPARTA-57.0 8333013421454639427 0 IN IP4 0.0.0.0
+
+s=-
+
+t=0 0
+
+a=fingerprint:sha-256 89:F8:9D:53:C3:D1:AD:BC:33:33:01:7A:9D:43:96:87:E2:B1:45:2B:CB:CF:D7:18:03:13:74:89:4A:18:BC:27
+
+a=group:BUNDLE sdparta_0 sdparta_1
+
+a=ice-options:trickle
+
+a=msid-semantic:WMS *
+
+m=audio 9 UDP/TLS/RTP/SAVPF 109 9 0 8 101
+
+c=IN IP4 0.0.0.0
+
+a=sendrecv
+
+a=extmap:1/sendonly urn:ietf:params:rtp-hdrext:ssrc-audio-level
+
+a=fmtp:109 maxplaybackrate=48000;stereo=1;useinbandfec=1
+
+a=fmtp:101 0-15
+
+a=ice-pwd:bd87c6fa4b5d8ee320dc97485b92450c
+
+a=ice-ufrag:cdc3a8fb
+
+a=mid:sdparta_0
+
+a=msid:{54cd9dac-b348-41c1-a09d-fae8434c5633} {4937fa0a-46ac-4ee9-9052-67671d3c92d6}
+
+a=rtcp-mux
+
+a=rtpmap:109 opus/48000/2
+
+a=rtpmap:9 G722/8000/1
+
+a=rtpmap:0 PCMU/8000
+
+a=rtpmap:8 PCMA/8000
+
+a=rtpmap:101 telephone-event/8000/1
+
+a=setup:actpass
+
+a=ssrc:817770817 cname:{6329e56e-3345-4edb-b579-ccfdbe534f31}
+
+m=video 9 UDP/TLS/RTP/SAVPF 121 120 126 97
+c=IN IP4 0.0.0.0
+
+a=sendrecv
+
+a=extmap:1 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time
+
+a=extmap:2 urn:ietf:params:rtp-hdrext:toffset
+
+a=fmtp:126 profile-level-id=42e01f;level-asymmetry-allowed=1;packetization-mode=1
+
+a=fmtp:97 profile-level-id=42e01f;level-asymmetry-allowed=1
+
+a=fmtp:120 max-fs=12288;max-fr=60
+
+a=fmtp:121 max-fs=12288;max-fr=60
+
+a=ice-pwd:bd87c6fa4b5d8ee320dc97485b92450c
+
+a=ice-ufrag:cdc3a8fb
+
+a=mid:sdparta_1
+
+a=msid:{54cd9dac-b348-41c1-a09d-fae8434c5633} {488924f7-a476-476f-ba68-b624e61476ea}
+
+a=rtcp-fb:120 nack
+
+a=rtcp-fb:120 nack pli
+
+a=rtcp-fb:120 ccm fir
+
+a=rtcp-fb:120 goog-remb
+
+a=rtcp-fb:121 nack
+
+a=rtcp-fb:121 nack pli
+
+a=rtcp-fb:121 ccm fir
+
+a=rtcp-fb:121 goog-remb
+
+a=rtcp-fb:126 nack
+
+a=rtcp-fb:126 nack pli
+
+a=rtcp-fb:126 ccm fir
+
+a=rtcp-fb:126 goog-remb
+
+a=rtcp-fb:97 nack
+
+a=rtcp-fb:97 nack pli
+
+a=rtcp-fb:97 ccm fir
+
+a=rtcp-fb:97 goog-remb
+
+a=rtcp-mux
+
+a=rtpmap:120 VP8/90000
+
+a=rtpmap:121 VP9/90000
+
+a=rtpmap:126 H264/90000
+
+a=rtpmap:97 H264/90000
+
+a=setup:actpass
+
+a=ssrc:2833676854 cname:{6329e56e-3345-4edb-b579-ccfdbe534f31}
+
+RTCMultiConnection.min.js:15:17633
+Remote peer's candidate pairs: candidate:0 1 UDP 2122252543 192.168.188.36 40421 typ host
+RTCMultiConnection.min.js:15:17827
+Set local description for remote user vpntest
+RTCMultiConnection.min.js:18:25612
+Remote peer's candidate pairs: candidate:4 1 TCP 2105524479 192.168.188.36 9 typ host tcptype active
+RTCMultiConnection.min.js:15:17827
+Your candidate pairs: candidate:0 1 UDP 2122252543 10.10.253.116 51675 typ host
+RTCMultiConnection.min.js:17:12420
+Your candidate pairs: candidate:4 1 TCP 2105524479 10.10.253.116 9 typ host tcptype active
+RTCMultiConnection.min.js:17:12420
+Remote peer's candidate pairs: candidate:0 2 UDP 2122252542 192.168.188.36 46081 typ host
+RTCMultiConnection.min.js:15:17827
+Remote peer's candidate pairs: candidate:4 2 TCP 2105524478 192.168.188.36 9 typ host tcptype active
+RTCMultiConnection.min.js:15:17827
+Remote peer's candidate pairs: candidate:0 1 UDP 2122252543 192.168.188.36 33776 typ host
+RTCMultiConnection.min.js:15:17827
+Remote peer's candidate pairs: candidate:4 1 TCP 2105524479 192.168.188.36 9 typ host tcptype active
+RTCMultiConnection.min.js:15:17827
+Remote peer's candidate pairs: candidate:0 2 UDP 2122252542 192.168.188.36 60203 typ host
+RTCMultiConnection.min.js:15:17827
+Remote peer's candidate pairs: candidate:4 2 TCP 2105524478 192.168.188.36 9 typ host tcptype active
+RTCMultiConnection.min.js:15:17827
+Remote peer's candidate pairs: candidate:1 1 UDP 1686052863 146.52.11.162 40421 typ srflx raddr 192.168.188.36 rport 40421
+RTCMultiConnection.min.js:15:17827
+Remote peer's candidate pairs: candidate:1 2 UDP 1686052862 146.52.11.162 46081 typ srflx raddr 192.168.188.36 rport 46081
+RTCMultiConnection.min.js:15:17827
+Remote peer's candidate pairs: candidate:1 1 UDP 1686052863 146.52.11.162 33776 typ srflx raddr 192.168.188.36 rport 33776
+RTCMultiConnection.min.js:15:17827
+Remote peer's candidate pairs: candidate:1 2 UDP 1686052862 146.52.11.162 60203 typ srflx raddr 192.168.188.36 rport 60203
+RTCMultiConnection.min.js:15:17827
+Your candidate pairs: candidate:1 1 UDP 1686052863 193.174.23.130 33615 typ srflx raddr 10.10.253.116 rport 51675
+RTCMultiConnection.min.js:17:12420
+Peer connection is closed between you &  vpntest 
+Object {  }
+ state: failed
+RTCMultiConnection.min.js:18:23728
+Peer connection is closed between you &  vpntest 
+Object {  }
+ state: closed
+RTCMultiConnection.min.js:18:23728
+Peer connection is closed between you &  vpntest 
+Object {  }
+ state: closed
+RTCMultiConnection.min.js:18:23728
+ICE failed, your TURN server appears to be broken, see about:webrtc for more details
+vpntest offline
+RTCMultiConnection.min.js:18:21290
+

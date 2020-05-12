@@ -1,50 +1,96 @@
 <html>
   <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static',filename='node_modules/reveal.js/css/reveal.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='node_modules/reveal.js/css/theme/white.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/png" sizes="32x32"  href="{{ url_for('static',filename='images/favicon-32x32.png') }}">
+    <style>
+     .reveal section img { background:none; border:none; box-shadow:none; }
+    </style>
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
-	<section>
+	    <section>
 	    <section>
 	    Litigation expenses cost companies millions of dollars a year!
-	    <canvas id="myChart"></canvas>
-	    <small>2010 Conference on Civil Litigation<cite title="Litigation Cost Survey of Major Companies"></cite></small>
 	    </section>
 	    <section>
-	      Slide 2
-            </section>
-	</section>
-      </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script src="{{ url_for('static',filename='node_modules/reveal.js/js/reveal.js') }}"></script>
-    <script>
-      Reveal.initialize();
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var chart = new Chart(ctx, {
-	      type: 'line',
-	      data: {
-		labels: ['2000','2001','2002','2003','2004','2005','2006','2007','2008'],
-		datasets: [{
-		  label: 'My First dataset',
-		  borderColor: 'rgb(255, 99, 132)',
-		  data: [66.4,79.7,91.4,109.4,101.0,104.4,118.7,116.6,114.9]
+	      In 2008 the average Fortune 200 company spent $115 million dollars on litigation
+	    </section>
+            <section>
+	     <canvas data-chart="line">
+	     <!--
+	      {
+	       "data": {
+		"labels": ["2000","2001","2002","2003","2004","2005","2006","2007","2008"],
+		"datasets": [{
+		  "data": [66.4,79.7,91.4,109.4,101.0,104.4,118.7,116.6,114.9],
+		  "label": "Fortune 100 Spending on Litigation","backgroundColor":"rgba(220,120,120,.8)"
 		}]
 	      },
-	      options: {
-		legend: {
-		  display: false,
-		},
-	        tooltips: {
-		  mode: 'index',
-		  axis: 'y'
+	      "options": {"responsive": "true", "scales": { "yAxes": [{ "scaleLabel":{ "display":"true", "labelString": "Spendinf (Millions of $)"}}]} }
+	     }
+	     -->
+	     </canvas>
+	      <small>2010 Conference on Civil Litigation<cite title="Litigation Cost Survey of Major Companies"></cite></small>
+            </section>
+            <section>
+	      A crucial component of winning a case is bringing it before the right judge.
+	    </section>
+	     <section>
+	      <canvas data-chart="bar" data-chart-src="{{ url_for('static',filename='javascript/charts/criminal_probs_sorted.csv') }}">
+	      <!--
+		{
+		  "data": {
+		     "datasets" : [{ "backgroundColor": "#3773a3" } ]
+		  },
+		  "options": {"responsive": "true", "legend": {"display": "false"}, "scales": { "yAxes": [{ "scaleLabel":{ "display":"true", "labelString": "Win Rate Criminal Cases"}}]} }
 		}
-	      }
-      });
+	      -->
+	      </canvas>
+	      <small>From Carp-Manning Database</small>
+	    </section>
+	    <section>
+	       Let's try it <a href="/#predictor">out</a>!    
+            </section>
+	    <section id="#howitworks">
+	      Here's how it works!
+            </section>
+	    <section>
+	       <img style="max-width:75%;" src="{{ url_for('static',filename='images/nlp_diagram_1.png') }}">
+               <img class="fragment fade-in" style="max-width:75%;" src="{{ url_for('static',filename='images/nlp_diagram_2.png') }}">
+               <img style="max-width:35%;" class="fragment fade-in" src="{{ url_for('static',filename='images/nlp_diagram_3.png') }}">
+	    </section>
+	    <section>
+		    <h2> Future Work</h2>
+		    <ul>
+		       <li>
+			  <h4>Improving Predictions</h4>
+			  <ul>
+			     <li>Exploring ensemble estimation (separating TFIDF and Carp Manning data)</li>
+			     <li>Using boosted tree classifiers (XGBoost)</li>
+			     <li>Include past decision data</li>
+			  </ul>
+		        </li>
+                       <li><h4>Building Classifiers</h4>
+		           <ul>
+			     <li>Build classifier to identify case type of decisions based only on textual data</li>
+		           </ul>
+		       </li>
+	            </ul>
+	    </section>
+	  </section>
+      </div>
+    </div>
+    <script src="{{ url_for('static',filename='node_modules/reveal.js/js/reveal.js') }}"></script>
+    <script>
+       Reveal.initialize({
+         dependencies: [
+	   { src: "{{ url_for('static',filename='node_modules/reveal.js/plugin/chart/Chart.min.js') }}"},
+           { src: "{{ url_for('static',filename='node_modules/reveal.js/plugin/chart/csv2chart.js') }}"},,
+	 ]
+       });
     </script>
   </body>
 </html>
