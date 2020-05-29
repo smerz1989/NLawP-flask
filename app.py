@@ -18,28 +18,6 @@ app.config.from_object(Config)
 
 Bootstrap(app)
 
-def create_geoplot(geojsonfile):
-    geojson = json.load(open(geojsonfile,'r'))
-    geo_source = GeoJSONDataSource(geojson=json.dumps(geojson))
-
-    tile_provider = get_provider(CARTODBPOSITRON)
-    tooltips = [("District","@DISTRICT"),("District Number","@District_N"),("Win Chance","@Win_Chance")]
-    p = figure(x_range=(-1.4e7,-7e6),y_range=(2.6e6,6.4e6),plot_height = 600 , plot_width = 950,
-                       x_axis_type="mercator", y_axis_type="mercator",tooltips=tooltips)
-    p.xaxis.major_tick_line_color = None  # turn off x-axis major ticks
-    p.xaxis.minor_tick_line_color = None  # turn off x-axis minor ticks
-
-    p.yaxis.major_tick_line_color = None  # turn off y-axis major ticks
-    p.yaxis.minor_tick_line_color = None 
-    p.xaxis.major_label_text_font_size = '0pt'  # turn off x-axis tick labels
-    p.yaxis.major_label_text_font_size = '0pt'
-    p.xgrid.grid_line_color = None
-    p.ygrid.grid_line_color = None
-    p.add_tile(tile_provider)
-    p.patches('xs','ys',source=geo_source,fill_alpha=0.7,line_color="white",line_width=0.5)
-    script, div = components(p)
-    return script,div
-
 @app.route('/',methods=['GET'])
 def index():
     form = OutcomeForm() 
