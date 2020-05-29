@@ -5,7 +5,7 @@ from bokeh.embed import components
 from bokeh.models import (ColumnDataSource,TableColumn, DataTable, LinearColorMapper, HoverTool,Dropdown,CDSView,Select, 
 			PrintfTickFormatter, GeoJSONDataSource, CustomJS,CustomJSFilter)
 from bokeh.tile_providers import CARTODBPOSITRON, get_provider, STAMEN_TERRAIN
-from bokeh.palettes import Blues9, Reds9
+from bokeh.palettes import Blues9, Reds9,RdBu11
 import json
 
 
@@ -110,24 +110,11 @@ def create_geoplot(geojsonfile):
     view = CDSView(source=geo_source,filters=[custom_filter])
     table = create_table(judge_source,dropdown)
     p.add_tile(tile_provider)
-    blues_palette = tuple(reversed(Blues9))
-    reds_palette = tuple(reversed(Reds9))
+    blues_palette = tuple(reversed(RdBu11))
     color_mapper = LinearColorMapper(palette=blues_palette,low=0,high=1)
     patches = p.patches('xs','ys',source=geo_source,fill_color={'field':'lib_prob','transform':color_mapper},
-            fill_alpha=1,hover_alpha=0.7,line_color="white",line_width=0.5,view=view)
-    outcome_dropdown = create_dropdown(CustomJS(args=dict(stuff=patches,s=geo_source,
-                                       reds=reds_palette,blues=blues_palette),
-                      code="""console.log(stuff);
-                              stuff.attributes.glyph.fill_color.field=cb_obj.value;
-                              if(cb_obj.value==='lib_prob'){
-                                stuff.attributes.glyph.fill_color.transform.palette=blues;
-                              }else{
-                                stuff.attributes.glyph.fill_color.transform.palette=reds;
-                              }
-                              stuff.change.emit();
-                              s.change.emit();"""),
-            menu=[("lib_prob","Liberal"),("con_prob","Conservative")],label="Desired Outcome")
-    script, div = components(column(row(column(outcome_dropdown,dropdown,sizing_mode="fixed",height=250,width=150),
+            fill_alpha=1,hover_line_color="black",hover_fill_color="white",line_color="white",line_width=0.5,view=view)
+    script, div = components(column(row(column(dropdown,sizing_mode="fixed",height=250,width=150),
                                  column(p,sizing_mode="scale_width")),column(table,sizing_mode="scale_width"),css_classes=["justify-content-center"]))
     return script,div
 

@@ -15,10 +15,8 @@
 	    <section>
 	    Litigation expenses cost companies millions of dollars a year!
 	    </section>
-	    <section>
-	      In 2008 the average Fortune 200 company spent $115 million dollars on litigation
-	    </section>
             <section>
+	      In 2008 the average Fortune 200 company spent $115 million dollars on litigation
 	     <canvas data-chart="line">
 	     <!--
 	      {
@@ -45,40 +43,33 @@
 		  "data": {
 		     "datasets" : [{ "backgroundColor": "#3773a3" } ]
 		  },
-		  "options": {"responsive": "true", "legend": {"display": "false"}, "scales": { "yAxes": [{ "scaleLabel":{ "display":"true", "labelString": "Win Rate Criminal Cases"}}]} }
+		  "options": {"responsive": "true", "legend": {"display": "false"}, "scales": { "yAxes": [{ "gridLines":{ "display":"false"},"scaleLabel":{ "display":"true", "labelString": "Win Rate Criminal Cases"}}]} }
 		}
 	      -->
 	      </canvas>
 	      <small>From Carp-Manning Database</small>
 	    </section>
 	    <section>
-	       Let's try it <a href="/#predictor">out</a>!    
+	       <a href="/#predictor">Let's try it out!</a>    
             </section>
 	    <section id="#howitworks">
 	      Here's how it works!
             </section>
 	    <section>
-	       <img style="max-width:75%;" src="{{ url_for('static',filename='images/nlp_diagram_1.png') }}">
+	       <img style="max-width:75%;" src="{{ url_for('static',filename='images/nlp_diagram_0.png') }}">
                <img class="fragment fade-in" style="max-width:75%;" src="{{ url_for('static',filename='images/nlp_diagram_2.png') }}">
                <img style="max-width:35%;" class="fragment fade-in" src="{{ url_for('static',filename='images/nlp_diagram_3.png') }}">
 	    </section>
 	    <section>
 		    <h2> Future Work</h2>
 		    <ul>
-		       <li>
-			  <h4>Improving Predictions</h4>
-			  <ul>
-			     <li>Exploring ensemble estimation (separating TFIDF and Carp Manning data)</li>
-			     <li>Using boosted tree classifiers (XGBoost)</li>
-			     <li>Include past decision data</li>
-			  </ul>
-		        </li>
-                       <li><h4>Building Classifiers</h4>
+		        <li><h4>Building Classifiers</h4>
 		           <ul>
 			     <li>Build classifier to identify case type of decisions based only on textual data</li>
 		           </ul>
 		       </li>
 	            </ul>
+		    <img style="height:auto;" src="{{ url_for('static',filename='images/law_research.png') }}">
 	    </section>
 	  </section>
       </div>
