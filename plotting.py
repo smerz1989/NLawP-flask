@@ -2,10 +2,17 @@ import pandas as pd
 from bokeh.plotting import figure, output_file, show
 from bokeh.layouts import column,row
 from bokeh.embed import components
+<<<<<<< HEAD
 from bokeh.models import (ColumnDataSource,TableColumn, DataTable, LinearColorMapper, HoverTool,Dropdown,CDSView,Select, 
 			PrintfTickFormatter, GeoJSONDataSource, CustomJS,CustomJSFilter)
 from bokeh.tile_providers import CARTODBPOSITRON, get_provider, STAMEN_TERRAIN
 from bokeh.palettes import Blues9, Reds9,RdBu11
+=======
+from bokeh.models import (ColumnDataSource, LinearColorMapper, HoverTool,Dropdown,CDSView,Select, 
+			PrintfTickFormatter, GeoJSONDataSource, CustomJS,CustomJSFilter)
+from bokeh.tile_providers import CARTODBPOSITRON, get_provider, STAMEN_TERRAIN
+from bokeh.palettes import Blues9, Reds9
+>>>>>>> a3a684d8f8f485c60f7bd4944f814b58b96fafce
 import json
 
 
@@ -27,11 +34,17 @@ CASETYPES = [('habeas corpus-US','Habeas Corpus-US'),('habeas corpus-state','Hab
              ('right to privacy','Right To Privacy'),('age discrimination','Age Discrimination'),
              ('Sentencing guidelines deviation','Sentencing Guidelines Deviation')]
 
+<<<<<<< HEAD
 def create_callback(geosource,judge_source):
     js_callback = CustomJS(args=dict(stuff=geosource,otherstuff=judge_source),
                     code="""
                     otherstuff.change.emit();
                     stuff.change.emit();""")
+=======
+def create_callback(geosource):
+    js_callback = CustomJS(args=dict(stuff=geosource),
+                    code="""stuff.change.emit();""")
+>>>>>>> a3a684d8f8f485c60f7bd4944f814b58b96fafce
     return js_callback
 
 def create_filter(dropdown,geosource):
@@ -97,7 +110,6 @@ def create_geoplot(geojsonfile):
     geo_source = GeoJSONDataSource(geojson=json.dumps(geojson))
     judge_df = pd.read_csv('./static/data/judge_prediction_probs.csv')
     judge_source = ColumnDataSource(judge_df)
-
     tile_provider = get_provider(CARTODBPOSITRON)
     tooltips = [("District","@DISTRICT"),("District Number","@District_N"),
                 ("Liberal Win Chance","@lib_prob"),("Conservative Win Chance","@con_prob")]
