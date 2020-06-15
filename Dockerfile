@@ -16,5 +16,5 @@ RUN mv node_modules/reveal.js-plugins/chart node_modules/reveal.js/plugins/
 WORKDIR /app
 ENV SECRET_KEY=${SECRET_KEY}
 
-CMD gunicorn --bind=0.0.0.0:${PORT} wsgi:app
+CMD gunicorn --bind=0.0.0.0:8000 wsgi:app
 
