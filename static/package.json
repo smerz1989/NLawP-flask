@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "reveal.js": "^3.9.2",
+    "reveal.js": "^4.3.0",
     "reveal.js-plugins": "^1.0.0"
   }
 }
